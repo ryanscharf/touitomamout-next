@@ -149,7 +149,7 @@ export const BlueskySynchronizerFactory: SynchronizerFactory<
           tweet,
         };
         
-        const hasMedia = false;
+        // const hasMedia = false;
 
         const quoteRecord: $Typed<AppBskyEmbedRecord.Main> | undefined =
           post.quotePost
@@ -233,7 +233,7 @@ export const BlueskySynchronizerFactory: SynchronizerFactory<
           }
         }
 
-        if (!hasMedia && !post.tweet.text) {
+        if (!media && !post.tweet.text) {
           log.warn(
             `☁️ | post skipped: no compatible media nor text to post (tweet: ${post.tweet.id})`,
           );
