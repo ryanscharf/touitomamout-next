@@ -1,5 +1,4 @@
 import { AppBskyFeedPost } from "@atproto/api";
-import { Tweet } from "@the-convocation/twitter-scraper";
 import { MetaPost } from "types/meta-tweet";
 import z from "zod";
 
