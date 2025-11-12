@@ -1,4 +1,4 @@
-import {
+import AtpAgent, {
   $Typed,
   Agent,
   AppBskyEmbedExternal,
@@ -6,7 +6,6 @@ import {
   AppBskyEmbedRecord,
   AppBskyEmbedVideo,
   AppBskyFeedPost,
-  BskyAgent,
   ComAtprotoRepoUploadBlob,
   CredentialSession,
   RichText,
@@ -87,7 +86,7 @@ export const BlueskySynchronizerFactory: SynchronizerFactory<
     );
 
     // ? there is literally no documentation on the alternative
-    const agent = new BskyAgent(session);
+    const agent = new AtpAgent(session);
     const identifier = args.env.BLUESKY_IDENTIFIER;
     const password = args.env.BLUESKY_PASSWORD;
     const platformId = BlueskySynchronizerFactory.PLATFORM_ID;
