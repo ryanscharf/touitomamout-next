@@ -101,7 +101,7 @@ export const MastodonSynchronizerFactory: SynchronizerFactory<
           }
         }
         for (const p of await tweet.photoFiles()) {
-          if (DEBUG) console.log("uploading photo", p);
+          if (DEBUG) console.log("uploading photo to mastodon", p);
           if (!p.file) continue;
           // This somehow fix it?
           const file = new File([p.file], "upload.jpg", {

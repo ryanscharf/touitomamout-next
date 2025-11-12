@@ -9,12 +9,12 @@ import { splitTweetTextCore } from "utils/tweet/split-tweet-text/split-tweet-tex
 export async function splitTextForBluesky(tweet: Tweet): Promise<string[]> {
   const { text, quotedStatusId, urls } = tweet;
   if (!text) {
-    return [];
+    return [""]; // Make sure to return at least one chunk
   }
   const maxChunkSize = BLUESKY_MAX_POST_LENGTH;
 
-  if (text!.length <= maxChunkSize) {
-    return [text!];
+  if (text.length <= maxChunkSize) {
+    return [text];
   }
 
   return await splitTweetTextCore({

@@ -270,9 +270,9 @@ export const BlueskySynchronizerFactory: SynchronizerFactory<
         > = [];
 
         if (DEBUG) {
-          console.log({ firstEmbed });
+          console.log("first embed bsky:", { firstEmbed });
         }
-        
+
         for (let i = 0; i < post.chunks.length; i++) {
           const chunk = post.chunks[i];
 
