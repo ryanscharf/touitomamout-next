@@ -1,0 +1,9 @@
+FROM alpine:latest
+
+RUN apk add --no-cache git docker-cli curl
+
+COPY update.sh /update.sh
+RUN chmod +x /update.sh
+
+# Run update check daily at 2 AM
+CMD echo "0 2 * * * /update.sh" | crontab - && crond -f -l 2
