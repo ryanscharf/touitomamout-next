@@ -9,17 +9,54 @@ account and at least one complete destination credential set are required.
 
 ## X source
 
-| Variable           | Default  | Description                                  |
-| ------------------ | -------- | -------------------------------------------- |
-| `TWITTER_HANDLE`   | Required | X username whose posts will be synchronized. |
-| `TWITTER_USERNAME` | None     | Username used to authenticate the X scraper. |
-| `TWITTER_PASSWORD` | None     | Password used to authenticate the X scraper. |
+| Variable           | Default  | Description                                                    |
+| ------------------ | -------- | -------------------------------------------------------------- |
+| `TWITTER_HANDLE`   | Required | X username whose posts will be synchronized.                   |
+| `TWITTER_USERNAME` | None     | Username used to authenticate the X scraper.                   |
+| `TWITTER_PASSWORD` | None     | Password used to authenticate the X scraper.                   |
+| `TWITTER_COOKIES`  | None     | Cookie request header copied from a logged-in browser session. |
 
 :::caution[Authentication]
-`TWITTER_USERNAME` and `TWITTER_PASSWORD` are optional, but an authenticated
-scraper session is substantially more reliable. Use a dedicated secondary
-account to limit the risk associated with automated scraping. The scraper does
-not support MFA challenges.
+Authentication is optional, but an authenticated scraper session is
+substantially more reliable. Configure either `TWITTER_COOKIES` or both
+`TWITTER_USERNAME` and `TWITTER_PASSWORD`. Use a dedicated secondary account to
+limit the risk associated with automated scraping. The scraper does not support
+MFA challenges.
+:::
+
+### Cookie-based authentication
+
+X may reject an automated username/password login as suspicious with error 399.
+In that case, authenticate Touitomamout with an existing browser session:
+
+1. Log in to [X.com](https://x.com/) in a browser.
+2. Open the browser developer tools and select the **Network** tab.
+3. Reload X.com, select a request to `x.com`, and find the `Cookie` request
+   header under **Request Headers**.
+4. Copy only the header's value (without the `Cookie:` label) into `.env`. It is
+   a semicolon-separated string and must include `auth_token` and `ct0`:
+
+   ```bash
+   TWITTER_COOKIES="auth_token=...; ct0=..."
+   ```
+
+5. Recreate the container and check the log:
+
+   ```console
+   $ docker compose up -d --force-recreate
+   $ docker compose logs touitomamout
+   ... connected (supplied cookies)
+   ```
+
+`TWITTER_USERNAME` and `TWITTER_PASSWORD` are not required when supplied
+cookies are accepted. If both are configured, Touitomamout falls back to them
+when the supplied cookies no longer work. Browser sessions expire or can be
+revoked; export fresh cookies if authentication starts failing again.
+
+:::danger[Keep cookies secret]
+The `auth_token` grants access to the X account. Do not commit `.env`, paste the
+cookie string into logs or issues, or share it with anyone. A dedicated
+secondary account limits the impact if a session is exposed.
 :::
 
 ## Destination platforms

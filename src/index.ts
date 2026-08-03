@@ -25,6 +25,7 @@ import {
   SYNC_POSTS,
   TOUITOMAMOUT_COMMIT_HASH,
   TOUITOMAMOUT_VERSION,
+  TWITTER_COOKIES,
   TWITTER_HANDLES,
   TWITTER_PASSWORD,
   TWITTER_USERNAME,
@@ -89,6 +90,7 @@ const factories: AnySynchronizerFactory[] = [
 ];
 
 const xClient = await createTwitterClient({
+  twitterCookies: TWITTER_COOKIES,
   twitterPassword: TWITTER_PASSWORD,
   twitterUsername: TWITTER_USERNAME,
   db,

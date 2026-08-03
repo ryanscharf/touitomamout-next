@@ -83,6 +83,7 @@ export const TWITTER_USERNAME = trimTwitterHandle(
   process.env.TWITTER_USERNAME ?? "",
 );
 export const TWITTER_PASSWORD = (process.env.TWITTER_PASSWORD ?? "").trim();
+export const TWITTER_COOKIES = (process.env.TWITTER_COOKIES ?? "").trim();
 export const DATABASE_PATH = (
   process.env.DATABASE_PATH ?? "data.sqlite"
 ).trim();
