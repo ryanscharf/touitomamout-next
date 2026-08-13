@@ -21,8 +21,8 @@ if [ "$LATEST_COMMIT" != "$CURRENT_COMMIT" ]; then
   echo "$LATEST_COMMIT" > /var/lib/touitomamout/commit.txt
   
   # Pull latest image and restart the main container
-  docker-compose -f /docker-compose.yml pull touitomamout
-  docker-compose -f /docker-compose.yml up -d touitomamout
+  docker compose -f /docker-compose.yml pull touitomamout
+  docker compose -f /docker-compose.yml up -d touitomamout
   
   echo "Update completed at $(date)"
 else

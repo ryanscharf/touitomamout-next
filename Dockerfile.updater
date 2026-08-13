@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk add --no-cache git docker-cli curl
+RUN apk add --no-cache git docker-cli docker-cli-compose curl
 
 COPY update.sh /update.sh
 RUN chmod +x /update.sh
