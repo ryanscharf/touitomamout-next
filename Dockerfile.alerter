@@ -1,0 +1,9 @@
+FROM alpine:latest
+
+RUN apk add --no-cache docker-cli msmtp curl
+
+COPY alert.sh /alert.sh
+RUN chmod +x /alert.sh
+
+# Check for stale X auth every 15 minutes
+CMD echo "*/15 * * * * /alert.sh" | crontab - && crond -f -l 2

@@ -8,3 +8,19 @@ services:
       - DATABASE_PATH=/data/database.sqlite
     volumes:
       - ./data:/data
+
+  updater:
+    image: ghcr.io/ryanscharf/touitomamout-next-updater:latest
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./docker-compose.yml:/docker-compose.yml
+      - ./data:/var/lib/touitomamout
+
+  alerter:
+    image: ghcr.io/ryanscharf/touitomamout-next-alerter:latest
+    restart: unless-stopped
+    env_file: ".env"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./alert-data:/var/lib/touitomamout-alert
