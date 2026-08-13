@@ -32,6 +32,10 @@ Synchronize your 𝕏 posts to other social media platforms with ease.
 [![GHCR](https://img.shields.io/badge/GHCR-ghcr.io%2Fyamada--sexta%2Ftouitomamout--next-086dd7?logo=github&style=flat-square)](https://github.com/yamada-sexta/touitomamout-next/pkgs/container/touitomamout-next)
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub-yamadasexta%2Ftouitomamout-086dd7?logo=docker&style=flat-square)](https://hub.docker.com/r/yamadasexta/touitomamout)
 
+> [!note]
+>
+> This fork adds two optional sidecar containers (auto-updater and stale-cookie email alerts) — see [SIDECARS.md](SIDECARS.md).
+
 ## Why this fork?
 
 - Still maintained (actually works)
